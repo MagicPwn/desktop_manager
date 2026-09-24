@@ -35,6 +35,17 @@ npm run tauri build -- --bundles nsis
 
 Windows 专属行为必须在 Windows 实机或 `.github/workflows/windows.yml` 中验证，包括桌面挂载、Explorer 拖放、全局快捷键、DPI、多显示器和安装包。
 
+## 发布 Windows 安装包
+
+GitHub Actions 会在推送匹配当前 Tauri 版本的标签时自动编译并发布 NSIS `.exe` 和 MSI 安装包：
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+标签版本必须与 `src-tauri/tauri.conf.json` 中的 `version` 一致。工作流会自动生成 Release 说明并上传两个安装包。
+
 ## 架构
 
 - `src/domain`：容器、图标、显示器模型，迁移和布局算法。
